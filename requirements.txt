@@ -1,0 +1,10 @@
+cryptography
+twine
+build
+pyperclip
+PySide2
+PySimpleGUI
+PySimpleGUIQt
+requests
+pyinstaller
+pyinstaller-hooks-contrib
