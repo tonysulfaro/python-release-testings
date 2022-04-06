@@ -36,7 +36,7 @@ jobs:
         include:
           - os: macos-latest
             TARGET: macos
-            CMD_BUILD: pyinstaller -F -w -n test src/main.py && cd dist/ && zip -r9 test test.app/
+            CMD_BUILD: pyinstaller -F -w -n test main.py && cd dist/ && zip -r9 test test.app/
             OUT_FILE_NAME: test.zip
             ASSET_MIME: application/zip
           - os: windows-latest
