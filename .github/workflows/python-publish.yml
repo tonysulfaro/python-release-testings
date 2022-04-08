@@ -29,9 +29,9 @@ jobs:
           tag_prefix: v
        - name: Check Output Parameters
          run: |
-          echo "Got outputs ${{ steps.release.outputs }}"
-          echo "Got tag name ${{ steps.release.outputs.tag_name }}"
-          echo "Got release version ${{ steps.release.outputs.version }}"
+          echo "Got outputs ${{ steps.create_release.outputs }}"
+          echo "Got tag name ${{ steps.create_release.outputs.tag_name }}"
+          echo "Got release version ${{ steps.create_release.outputs.version }}"
       
 
   build:
