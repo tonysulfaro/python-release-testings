@@ -22,7 +22,9 @@ jobs:
          id: latest_release_info
          uses: jossef/action-latest-release-info@v1.1.0
        - name: Output Release URL File
-         run: echo "${{ steps.latest_release_info.outputs.upload_url }}" > release_url.txt
+         run: |
+          echo "${{ steps.latest_release_info.outputs.upload_url }}"
+          echo "${{ steps.latest_release_info.outputs.upload_url }}" > release_url.txt
        - name: Save Release URL File for publish
          uses: actions/upload-artifact@v1
          with:
@@ -73,7 +75,8 @@ jobs:
         id: get_release_info
         shell: bash
         run: |
-          value=`cat release_url.txt`
+          cat release_url/release_url.txt
+          value=`cat release_url/release_url.txt`
           echo ::set-output name=upload_url::$value
       - name: Upload Release Asset
         id: upload-release-asset
