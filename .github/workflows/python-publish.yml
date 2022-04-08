@@ -11,19 +11,28 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Output Release URL File
-        run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
-    
-      - id: release
-        uses: rymndhng/release-on-push-action@master
-        with:
+       - name: Create Release
+         id: create_release
+         uses: actions/create-release@v1
+         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+       - name: Output Release URL File
+         run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
+       - name: Save Release URL File for publish
+         uses: actions/upload-artifact@v1
+         with:
           name: release_url
           path: release_url.txt
           bump_version_scheme: minor
           tag_prefix: v
           
-      - name: Check Output Parameters
-        run: |
+       - name: Check Output Parameters
+         run: |
           echo "Got tag name ${{ steps.release.outputs.tag_name }}"
           echo "Got release version ${{ steps.release.outputs.version }}"
       
