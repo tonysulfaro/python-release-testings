@@ -27,7 +27,7 @@ jobs:
          uses: actions/upload-artifact@v1
          with:
           name: release_url
-          path: release_url.txt
+          path: release_url/release_url.txt
           bump_version_scheme: minor
           tag_prefix: v
        - name: Check Output Parameters
