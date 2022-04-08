@@ -17,7 +17,7 @@ jobs:
          env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          with:
-          tag_prefix: ${{ github.ref }}
+          tag_prefix: "v"
           release_name: Release ${{ github.ref }}
        - name: Output Release URL File
          run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
