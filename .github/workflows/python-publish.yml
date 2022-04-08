@@ -11,9 +11,14 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Output Release URL File
+        run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
+    
       - id: release
         uses: rymndhng/release-on-push-action@master
         with:
+          name: release_url
+          path: release_url.txt
           bump_version_scheme: minor
           tag_prefix: v
           
@@ -21,8 +26,7 @@ jobs:
         run: |
           echo "Got tag name ${{ steps.release.outputs.tag_name }}"
           echo "Got release version ${{ steps.release.outputs.version }}"
-      - name: Output Release URL File
-        run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
+      
 
   build:
     name: Build packages
