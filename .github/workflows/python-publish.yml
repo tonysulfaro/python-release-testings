@@ -27,7 +27,11 @@ jobs:
           path: release_url.txt
           bump_version_scheme: minor
           tag_prefix: v
-          
+       - name: upload artifacts
+         uses: actions/upload-artifact@v2
+         with:
+          name: main
+          path: dist/main.exe
        - name: Check Output Parameters
          run: |
           echo "Got tag name ${{ steps.release.outputs.tag_name }}"
